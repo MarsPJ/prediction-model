@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import statsmodels as sm
+from statsmodels.tsa.statespace.sarimax import SARIMAX
 def convert_to_pandas(data):
     if isinstance(data, pd.DataFrame) or isinstance(data, pd.Series):
         # 如果数据已经是Pandas DataFrame或Series，则无需转换，直接返回
@@ -29,7 +29,7 @@ def SARIMA(y_origin,predict_num, p, d, q, P, D, Q, S):
     # D: 季节性差分阶数，表示将季节性时间序列应用于多少次差分操作以使其稳定。
     # Q: 季节性移动平均（SMA）阶数，表示季节性部分中使用多少个滞后预测误差作为自变量。
     # S: 季节性周期性长度，表示数据的季节性周期性。例如，对于月度数据，如果季节性是12（一年的月份数），则 S = 12。
-    sarima_model = sm.tsa.SARIMAX(y_origin, order=(p, d, q), seasonal_order=(P, D, Q, S))
+    sarima_model =SARIMAX(y_origin, order=(p, d, q), seasonal_order=(P, D, Q, S))
     sarima_fit = sarima_model.fit()
     y_fitted = sarima_fit.fittedvalues
     forecast = sarima_fit.get_forecast(steps=predict_num)
