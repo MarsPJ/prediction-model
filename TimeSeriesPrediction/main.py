@@ -31,7 +31,7 @@ predict_num = 31
 # y_fitted, y_hat, alpha, beta, gamma = exponential_smoothing.exponential_smoothing(y_origin, predict_num)
 # print(alpha,beta,gamma)
 # SARIMA
-y_fitted, y_hat = SARIMA.SARIMA(y_origin,predict_num,2,1,0,2,0,0,365)
+y_fitted, y_hat = SARIMA.SARIMA(y_origin,predict_num,2,1,0,2,0,0,31)
 
 index1 = list(range(1,731))
 index2 = list(range(731,731 + predict_num))
